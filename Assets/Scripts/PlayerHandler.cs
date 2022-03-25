@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
 {
+    #region Variables
     public float speed = 3f;
     [SerializeField] protected ScoreKeeper _scoreKeeper;
     public int needed;
     public int health;
     public float invincibilityTimer;
+    #endregion
     // Start is called before the first frame update
     void Start()//initialization
     {

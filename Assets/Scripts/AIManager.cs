@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIManager : MonoBehaviour
 {
+    #region Variables
     [SerializeField] protected ScoreKeeper _scoreKeeper;
     [SerializeField] protected int waypointIndex;
     [SerializeField] protected Transform defenceWaypoint;
@@ -18,13 +19,15 @@ public class AIManager : MonoBehaviour
         Defence,
         RunAway,
     }
+    #endregion
     // Start is called before the first frame update
-    void Start()
+    void Start()//initializations
     {
         currentState = AIState.Gather;
         NextState();
     }
-    private void NextState()
+    #region State Machine
+    private void NextState() //state machine
     {
         switch (currentState)
         {
@@ -130,6 +133,8 @@ public class AIManager : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
+    #region Functions
     public void AIMoveTowards(Transform goal)
     {
         Vector2 directionToGoal = (goal.transform.position - transform.position);//direction to goal
@@ -151,10 +156,12 @@ public class AIManager : MonoBehaviour
             _scoreKeeper.scoreText.text = "Finish it off!";
         }
     }
+    #endregion
+    #region Collisions
     private void OnCollisionStay2D(Collision2D collision)
     {
         //Debug.Log("collision");
-        if (collision.gameObject.tag == "Energy")//natural ai behaviour
+        if (collision.gameObject.tag == "Energy")//natural ai behaviour, chasing down energy
         {
             _scoreKeeper.energyLoc.Remove(collision.gameObject.transform);
             Destroy(collision.gameObject);
@@ -172,4 +179,5 @@ public class AIManager : MonoBehaviour
             transform.position += direction * speed * Time.deltaTime;//as a bonus, makes ai look angry
         }
     }
+    #endregion 
 }

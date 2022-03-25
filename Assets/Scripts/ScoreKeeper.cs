@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreKeeper : MonoBehaviour
 {
-
+    #region Variables
     //list of energy locations
     public List<Transform> energyLoc;
     //list of spawner positions
@@ -16,6 +16,8 @@ public class ScoreKeeper : MonoBehaviour
     public GameObject minePrefab;
     public Text gameText, scoreText;
     public HorizontalLayoutGroup hearts;
+    #endregion
+    #region Functions
     //find closest energy for any object
     public int LowestEnergyDistance(Transform origin)//find energy with lowest distance
     {
@@ -72,7 +74,7 @@ public class ScoreKeeper : MonoBehaviour
             }
         }
     }
-    public void UpdateScore(int score)
+    public void UpdateScore(int score) //change in-game text
     {
         if (score == 0)
         {
@@ -83,4 +85,5 @@ public class ScoreKeeper : MonoBehaviour
             scoreText.text = "Collect " + score + " more!";
         }
     }
+    #endregion
 }
