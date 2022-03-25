@@ -74,12 +74,12 @@ public class PlayerHandler : MonoBehaviour
         }
         else if (cTag == "Spawner") //if enough energy was collected, destroy spawner
         {
-            //if (needed == 0)
-            //{
+            if (needed == 0)
+            {
                 _scoreKeeper.spawnerPosition.Remove(collision.gameObject);
                 Destroy(collision.gameObject);
                 needed = 5;
-            //}
+            }
         }
         else if (cTag == "Run Away") //tag for AI that is running away
         {
